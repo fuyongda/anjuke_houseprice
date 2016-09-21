@@ -12,7 +12,7 @@
       PRIMARY KEY (`id`)
     ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-复制代码
+
 我是首先自己添加的一些区服的数据，其实可以采集这些，因为就那几个区，地址有限，就直接添加了。添加了是14条数据：
 
 初始数据准备好了，就可以开始采集所有的区域版块入口地址了。贴上代码
@@ -44,13 +44,8 @@ area.php
             $st->execute([ trim( $v->text() ), $href, $vo['id']]);
         }
     }
-
-复制代码
 采集出的单条数据如下：
-
     15    百家湖    http://nanjing.anjuke.com/sale/baijiahu/p*/#filtersort    1
-
-复制代码
 数据地址都有了，而且页面地址我加了*，这样就可以替换了，打开程序就能开始采集每个模块下的其他分页的书据了。最重要的主程序就要开始了；
 新建hdetail表来记录采集来的房屋数信息:
 
@@ -66,7 +61,6 @@ area.php
       PRIMARY KEY (`id`)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-复制代码
 数据库有了，那么主程序奉上。house.php
 
     <?php
@@ -124,11 +118,8 @@ area.php
 
     $sql = "select * from `area` where id > 14";
 
-复制代码
 根据id进行截取，多打开几个cmd执行，就变成多进程模式了。
-
 下面就是等待了，我是8.16号采集的，一共采集了311226条数据。好了现在数有了，就可以开始分析了。我分析的代码如下:
-
     <?php
     require "init.php";
     $data = unserialize( file_get_contents('./data/nj.data') );
@@ -589,11 +580,4 @@ area.php
     </body>
     </html>
 
-复制代码
-页面效果如下:
-
-
-
-
-
-哈哈，房价果然很是吓人，二手房都这个价钱了。还有什么有趣的信息，你自己可以去发掘。 
+用以上html可以生成饼状图
